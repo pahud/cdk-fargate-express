@@ -41,6 +41,10 @@ project.addFields({
   ]
 });
 
+project.gitignore.exclude(
+  'cdk.context.json'
+);
+
 
 project.npmignore.exclude(
   'express.d',
