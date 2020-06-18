@@ -42,7 +42,8 @@ project.addFields({
 });
 
 project.gitignore.exclude(
-  'cdk.context.json'
+  'cdk.context.json',
+  'package.json'
 );
 
 
