@@ -37,7 +37,7 @@ export class ExpressService extends cdk.Construct {
     new ecsPatterns.ApplicationLoadBalancedFargateService(this, 'Service', {
       vpc: props.vpc,
       taskImageOptions: {
-        image: ecs.ContainerImage.fromAsset(this.expressAssets) 
+        image: ecs.ContainerImage.fromAsset(this.expressAssets),
       },
     })
   }

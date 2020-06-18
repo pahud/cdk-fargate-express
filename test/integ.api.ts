@@ -1,7 +1,6 @@
 import { ExpressService } from '../lib/index';
 import { App, Stack, Construct } from '@aws-cdk/core';
 import * as ec2 from '@aws-cdk/aws-ec2';
-import * as path from 'path';
 
 const mockApp = new App();
 
