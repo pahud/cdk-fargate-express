@@ -44,7 +44,6 @@ tsconfig.json
 *.js
 cdk.context.json
 cdk.out
-package.json
 !# synthesized by projen, (do not modify by hand)
 !/package.json
 !# synthesized by projen, (do not modify by hand)
