@@ -1,0 +1,536 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree"
+      },
+      "testing-stack2": {
+        "id": "testing-stack2",
+        "path": "testing-stack2",
+        "children": {
+          "Vpc": {
+            "id": "Vpc",
+            "path": "testing-stack2/Vpc",
+            "children": {
+              "PublicSubnet1": {
+                "id": "PublicSubnet1",
+                "path": "testing-stack2/Vpc/PublicSubnet1"
+              },
+              "PublicSubnet2": {
+                "id": "PublicSubnet2",
+                "path": "testing-stack2/Vpc/PublicSubnet2"
+              },
+              "PublicSubnet3": {
+                "id": "PublicSubnet3",
+                "path": "testing-stack2/Vpc/PublicSubnet3"
+              },
+              "PrivateSubnet1": {
+                "id": "PrivateSubnet1",
+                "path": "testing-stack2/Vpc/PrivateSubnet1"
+              },
+              "PrivateSubnet2": {
+                "id": "PrivateSubnet2",
+                "path": "testing-stack2/Vpc/PrivateSubnet2"
+              },
+              "PrivateSubnet3": {
+                "id": "PrivateSubnet3",
+                "path": "testing-stack2/Vpc/PrivateSubnet3"
+              }
+            }
+          },
+          "testing": {
+            "id": "testing",
+            "path": "testing-stack2/testing",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "testing-stack2/testing/Service",
+                "children": {
+                  "LB": {
+                    "id": "LB",
+                    "path": "testing-stack2/testing/Service/LB",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "testing-stack2/testing/Service/LB/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                          "aws:cdk:cloudformation:props": {
+                            "scheme": "internet-facing",
+                            "securityGroups": [
+                              {
+                                "Fn::GetAtt": [
+                                  "testingServiceLBSecurityGroup0DA2DAB8",
+                                  "GroupId"
+                                ]
+                              }
+                            ],
+                            "subnets": [
+                              "subnet-a7f831ee",
+                              "subnet-1d040645",
+                              "subnet-a68ad08e"
+                            ],
+                            "type": "application"
+                          }
+                        }
+                      },
+                      "SecurityGroup": {
+                        "id": "SecurityGroup",
+                        "path": "testing-stack2/testing/Service/LB/SecurityGroup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "testing-stack2/testing/Service/LB/SecurityGroup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                              "aws:cdk:cloudformation:props": {
+                                "groupDescription": "Automatically created Security Group for ELB testingstack2testingServiceLB38303AA3",
+                                "securityGroupIngress": [
+                                  {
+                                    "cidrIp": "0.0.0.0/0",
+                                    "ipProtocol": "tcp",
+                                    "fromPort": 80,
+                                    "toPort": 80,
+                                    "description": "Allow from anyone on port 80"
+                                  }
+                                ],
+                                "vpcId": "vpc-497a492d"
+                              }
+                            }
+                          },
+                          "to testingstack2testingServiceSecurityGroup9F83AFCA:80": {
+                            "id": "to testingstack2testingServiceSecurityGroup9F83AFCA:80",
+                            "path": "testing-stack2/testing/Service/LB/SecurityGroup/to testingstack2testingServiceSecurityGroup9F83AFCA:80",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupEgress",
+                              "aws:cdk:cloudformation:props": {
+                                "groupId": {
+                                  "Fn::GetAtt": [
+                                    "testingServiceLBSecurityGroup0DA2DAB8",
+                                    "GroupId"
+                                  ]
+                                },
+                                "ipProtocol": "tcp",
+                                "description": "Load balancer to target",
+                                "destinationSecurityGroupId": {
+                                  "Fn::GetAtt": [
+                                    "testingServiceSecurityGroup37291C5B",
+                                    "GroupId"
+                                  ]
+                                },
+                                "fromPort": 80,
+                                "toPort": 80
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "PublicListener": {
+                        "id": "PublicListener",
+                        "path": "testing-stack2/testing/Service/LB/PublicListener",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "testing-stack2/testing/Service/LB/PublicListener/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                              "aws:cdk:cloudformation:props": {
+                                "defaultActions": [
+                                  {
+                                    "type": "forward",
+                                    "targetGroupArn": {
+                                      "Ref": "testingServiceLBPublicListenerECSGroupFCD94D30"
+                                    }
+                                  }
+                                ],
+                                "loadBalancerArn": {
+                                  "Ref": "testingServiceLBA7EF9221"
+                                },
+                                "port": 80,
+                                "protocol": "HTTP"
+                              }
+                            }
+                          },
+                          "ECSGroup": {
+                            "id": "ECSGroup",
+                            "path": "testing-stack2/testing/Service/LB/PublicListener/ECSGroup",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "testing-stack2/testing/Service/LB/PublicListener/ECSGroup/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                                  "aws:cdk:cloudformation:props": {
+                                    "port": 80,
+                                    "protocol": "HTTP",
+                                    "targetType": "ip",
+                                    "vpcId": "vpc-497a492d"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "LoadBalancerDNS": {
+                    "id": "LoadBalancerDNS",
+                    "path": "testing-stack2/testing/Service/LoadBalancerDNS"
+                  },
+                  "ServiceURL": {
+                    "id": "ServiceURL",
+                    "path": "testing-stack2/testing/Service/ServiceURL"
+                  },
+                  "TaskDef": {
+                    "id": "TaskDef",
+                    "path": "testing-stack2/testing/Service/TaskDef",
+                    "children": {
+                      "TaskRole": {
+                        "id": "TaskRole",
+                        "path": "testing-stack2/testing/Service/TaskDef/TaskRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "testing-stack2/testing/Service/TaskDef/TaskRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "ecs-tasks.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "testing-stack2/testing/Service/TaskDef/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                          "aws:cdk:cloudformation:props": {
+                            "containerDefinitions": [
+                              {
+                                "essential": true,
+                                "image": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "903779448426.dkr.ecr.ap-northeast-1.",
+                                      {
+                                        "Ref": "AWS::URLSuffix"
+                                      },
+                                      "/aws-cdk/assets:198878a4f9912bfdb0e44acb56fd8615575328130fd0fad5e6dd9c75ce27d0b9"
+                                    ]
+                                  ]
+                                },
+                                "name": "web",
+                                "portMappings": [
+                                  {
+                                    "containerPort": 80,
+                                    "protocol": "tcp"
+                                  }
+                                ],
+                                "logConfiguration": {
+                                  "logDriver": "awslogs",
+                                  "options": {
+                                    "awslogs-group": {
+                                      "Ref": "testingServiceTaskDefwebLogGroupAD33B6F9"
+                                    },
+                                    "awslogs-stream-prefix": "Service",
+                                    "awslogs-region": "ap-northeast-1"
+                                  }
+                                }
+                              }
+                            ],
+                            "cpu": "256",
+                            "executionRoleArn": {
+                              "Fn::GetAtt": [
+                                "testingServiceTaskDefExecutionRole758F4BA8",
+                                "Arn"
+                              ]
+                            },
+                            "family": "testingstack2testingServiceTaskDef1EEB227A",
+                            "memory": "512",
+                            "networkMode": "awsvpc",
+                            "requiresCompatibilities": [
+                              "FARGATE"
+                            ],
+                            "taskRoleArn": {
+                              "Fn::GetAtt": [
+                                "testingServiceTaskDefTaskRole5460ABB0",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "web": {
+                        "id": "web",
+                        "path": "testing-stack2/testing/Service/TaskDef/web",
+                        "children": {
+                          "AssetImage": {
+                            "id": "AssetImage",
+                            "path": "testing-stack2/testing/Service/TaskDef/web/AssetImage",
+                            "children": {
+                              "Staging": {
+                                "id": "Staging",
+                                "path": "testing-stack2/testing/Service/TaskDef/web/AssetImage/Staging"
+                              },
+                              "Repository": {
+                                "id": "Repository",
+                                "path": "testing-stack2/testing/Service/TaskDef/web/AssetImage/Repository"
+                              }
+                            }
+                          },
+                          "LogGroup": {
+                            "id": "LogGroup",
+                            "path": "testing-stack2/testing/Service/TaskDef/web/LogGroup",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "testing-stack2/testing/Service/TaskDef/web/LogGroup/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                                  "aws:cdk:cloudformation:props": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "ExecutionRole": {
+                        "id": "ExecutionRole",
+                        "path": "testing-stack2/testing/Service/TaskDef/ExecutionRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "testing-stack2/testing/Service/TaskDef/ExecutionRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "ecs-tasks.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "testing-stack2/testing/Service/TaskDef/ExecutionRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "testing-stack2/testing/Service/TaskDef/ExecutionRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "ecr:BatchCheckLayerAvailability",
+                                            "ecr:GetDownloadUrlForLayer",
+                                            "ecr:BatchGetImage"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::Join": [
+                                              "",
+                                              [
+                                                "arn:",
+                                                {
+                                                  "Ref": "AWS::Partition"
+                                                },
+                                                ":ecr:ap-northeast-1:903779448426:repository/aws-cdk/assets"
+                                              ]
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Action": "ecr:GetAuthorizationToken",
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": [
+                                            "logs:CreateLogStream",
+                                            "logs:PutLogEvents"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "testingServiceTaskDefwebLogGroupAD33B6F9",
+                                              "Arn"
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "testingServiceTaskDefExecutionRoleDefaultPolicy87C4883C",
+                                    "roles": [
+                                      {
+                                        "Ref": "testingServiceTaskDefExecutionRole758F4BA8"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "Service": {
+                    "id": "Service",
+                    "path": "testing-stack2/testing/Service/Service",
+                    "children": {
+                      "Service": {
+                        "id": "Service",
+                        "path": "testing-stack2/testing/Service/Service/Service",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                          "aws:cdk:cloudformation:props": {
+                            "cluster": {
+                              "Ref": "EcsDefaultClusterMnL3mNNYNVpc18E0451A"
+                            },
+                            "deploymentConfiguration": {
+                              "maximumPercent": 200,
+                              "minimumHealthyPercent": 50
+                            },
+                            "desiredCount": 1,
+                            "enableEcsManagedTags": false,
+                            "healthCheckGracePeriodSeconds": 60,
+                            "launchType": "FARGATE",
+                            "loadBalancers": [
+                              {
+                                "targetGroupArn": {
+                                  "Ref": "testingServiceLBPublicListenerECSGroupFCD94D30"
+                                },
+                                "containerName": "web",
+                                "containerPort": 80
+                              }
+                            ],
+                            "networkConfiguration": {
+                              "awsvpcConfiguration": {
+                                "assignPublicIp": "DISABLED",
+                                "subnets": [
+                                  "subnet-05b946a306d81274b",
+                                  "subnet-0ae2846156ce0118c",
+                                  "subnet-063ca7ed4aacdbad7"
+                                ],
+                                "securityGroups": [
+                                  {
+                                    "Fn::GetAtt": [
+                                      "testingServiceSecurityGroup37291C5B",
+                                      "GroupId"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "taskDefinition": {
+                              "Ref": "testingServiceTaskDefA7FEB5E7"
+                            }
+                          }
+                        }
+                      },
+                      "SecurityGroup": {
+                        "id": "SecurityGroup",
+                        "path": "testing-stack2/testing/Service/Service/SecurityGroup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "testing-stack2/testing/Service/Service/SecurityGroup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                              "aws:cdk:cloudformation:props": {
+                                "groupDescription": "testing-stack2/testing/Service/Service/SecurityGroup",
+                                "securityGroupEgress": [
+                                  {
+                                    "cidrIp": "0.0.0.0/0",
+                                    "description": "Allow all outbound traffic by default",
+                                    "ipProtocol": "-1"
+                                  }
+                                ],
+                                "vpcId": "vpc-497a492d"
+                              }
+                            }
+                          },
+                          "from testingstack2testingServiceLBSecurityGroupCC253CF0:80": {
+                            "id": "from testingstack2testingServiceLBSecurityGroupCC253CF0:80",
+                            "path": "testing-stack2/testing/Service/Service/SecurityGroup/from testingstack2testingServiceLBSecurityGroupCC253CF0:80",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                              "aws:cdk:cloudformation:props": {
+                                "ipProtocol": "tcp",
+                                "description": "Load balancer to target",
+                                "fromPort": 80,
+                                "groupId": {
+                                  "Fn::GetAtt": [
+                                    "testingServiceSecurityGroup37291C5B",
+                                    "GroupId"
+                                  ]
+                                },
+                                "sourceSecurityGroupId": {
+                                  "Fn::GetAtt": [
+                                    "testingServiceLBSecurityGroup0DA2DAB8",
+                                    "GroupId"
+                                  ]
+                                },
+                                "toPort": 80
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "EcsDefaultClusterMnL3mNNYNVpc": {
+            "id": "EcsDefaultClusterMnL3mNNYNVpc",
+            "path": "testing-stack2/EcsDefaultClusterMnL3mNNYNVpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "testing-stack2/EcsDefaultClusterMnL3mNNYNVpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Cluster",
+                  "aws:cdk:cloudformation:props": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

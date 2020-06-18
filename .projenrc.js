@@ -4,14 +4,14 @@ const {
 } = require('projen');
 
 const AWS_CDK_LATEST_RELEASE = '1.45.0';
-const PROJECT_NAME = 'cdk-serverless-api';
-const PROJECT_DESCRIPTION = 'A sample JSII construct lib for AWS CDK';
+const PROJECT_NAME = 'cdk-fargate-express';
+const PROJECT_DESCRIPTION = 'A sample JSII construct lib for Express Apps in AWS Fargate';
 
 const project = new JsiiProject({
   name: PROJECT_NAME,
   jsiiVersion: Semver.caret('1.5.0'),
   description: PROJECT_DESCRIPTION,
-  repository: 'https://github.com/pahud/awscdk-jsii-template.git',
+  repository: 'https://github.com/pahud/cdk-fargate-express.git',
   authorName: 'Pahud Hsieh',
   authorEmail: 'hunhsieh@amazon.com',
   stability: 'experimental',
@@ -23,20 +23,31 @@ const project = new JsiiProject({
   dependencies: {
     constructs: Semver.pinned('3.0.3'),
     '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-apigatewayv2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
-    '@aws-cdk/aws-lambda': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs-patterns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
   },
   python: {
-    distName: 'cdk-serverless-api',
-    module: 'cdk_serverless_api'
+    distName: 'cdk-fargate-express',
+    module: 'cd_fargate_express'
   }
 });
 
 project.addFields({
   'keywords': [
-    'cdk',
     'aws',
+    'express',
+    'fargate'
   ]
 });
+
+
+project.npmignore.exclude(
+  'express.d',
+  'cdk.out',
+  'cdk.context.json',
+  'coverage',
+  'doc'
+);
 
 project.synth();

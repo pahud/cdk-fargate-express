@@ -1,40 +1,35 @@
 
 import * as cdk from '@aws-cdk/core';
-import * as apigatewayv2 from '@aws-cdk/aws-apigatewayv2';
-import * as lambda from '@aws-cdk/aws-lambda';
+import * as ec2 from '@aws-cdk/aws-ec2';
+import * as ecs from '@aws-cdk/aws-ecs';
+import * as ecsPatterns from '@aws-cdk/aws-ecs-patterns';
 
-export interface ServerlessApiProps {
-  readonly handler?: lambda.IFunction;
+export interface ExpressServiceProps {
+  /**
+   * The VPC
+   */
+  readonly vpc?: ec2.IVpc;
+
+  /**
+   * options to customize the servide
+   */
+  readonly serviceOptions?: ecsPatterns.ApplicationLoadBalancedFargateServiceProps,
+  /**
+   * local path to the docker assets directory
+   */
+  readonly dockerAssets?: string;
 }
 
-export class ServerlessApi extends cdk.Construct {
-  readonly handler: lambda.IFunction
-
-  constructor(scope: cdk.Construct, id: string, props?: ServerlessApiProps) {
+export class ExpressService extends cdk.Construct {
+  constructor(scope: cdk.Construct, id: string, props: ExpressServiceProps = {}) {
     super(scope, id);
-    this.handler = props?.handler ?? new lambda.Function(this, 'handler', {
-      runtime: lambda.Runtime.PYTHON_3_7,
-      handler: 'index.handler',
-      code: new lambda.InlineCode(`
-import json
-def handler(event, context):
-      return {
-        'statusCode': '200',
-        'headers': {
-          'Content-Type': 'application/json',
-        },
-        'body': json.dumps(event)
-      }
-`),
-    });
-
-    const api = new apigatewayv2.HttpApi(this, 'API', {
-      defaultIntegration: new apigatewayv2.LambdaProxyIntegration({ 
-        handler: this.handler,
-      }),
+    
+    new ecsPatterns.ApplicationLoadBalancedFargateService(this, 'Service', {
+      vpc: props.vpc,
+      taskImageOptions: {
+        image: props.dockerAssets ?  ecs.ContainerImage.fromAsset(props.dockerAssets) 
+          : ecs.ContainerImage.fromRegistry('amazon/amazon-ecs-sample'),
+      },
     })
-
-    new cdk.CfnOutput(this, 'URL', { value: api.url! })
-
   }
 }
