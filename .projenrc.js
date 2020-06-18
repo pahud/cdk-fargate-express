@@ -48,7 +48,6 @@ project.gitignore.exclude(
 
 
 project.npmignore.exclude(
-  'express.d',
   'cdk.out',
   'cdk.context.json',
   'coverage',

@@ -16,7 +16,6 @@ const vpc = getOrCreateVpc(stack)
 
 new ExpressService(stack, 'testing', {
   vpc,
-  dockerAssets: path.join(__dirname, '../express.d'),
 });
 
 

@@ -6,7 +6,7 @@ COPY package.json ./
 
 RUN npm install
 
-COPY src/app.js ./
+COPY src/* ./
 
 COPY welcome.html ./
 

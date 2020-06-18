@@ -9,7 +9,6 @@
 tsconfig.json
 # exclude jsii outdir
 dist
-express.d
 cdk.out
 cdk.context.json
 coverage
