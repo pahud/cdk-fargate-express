@@ -47,9 +47,6 @@ project.gitignore.exclude(
   'package.json'
 );
 
-project.
-
-
 project.npmignore.exclude(
   'cdk.out',
   'cdk.context.json',
