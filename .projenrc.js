@@ -43,6 +43,7 @@ project.addFields({
 
 project.gitignore.exclude(
   'cdk.context.json',
+  'cdk.out',
   'package.json'
 );
 
