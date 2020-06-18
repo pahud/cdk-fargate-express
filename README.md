@@ -1,3 +1,7 @@
+[![NPM version](https://badge.fury.io/js/cdk-fargate-express.svg)](https://badge.fury.io/js/cdk-fargate-express)
+[![PyPI version](https://badge.fury.io/py/cdk-fargate-express.svg)](https://badge.fury.io/py/cdk-fargate-express)
+![Release](https://github.com/pahud/cdk-fargate-express/workflows/Release/badge.svg)
+
 # cdk-fargate-express
 
 Deploy your serverless Express app in AWS with AWS CDK
