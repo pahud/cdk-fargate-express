@@ -3,7 +3,8 @@ const {
   Semver
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.45.0';
+const AWS_CDK_LATEST_RELEASE = '1.58.0';
+const CONSTRUCTS_VERSION = '3.0.4'
 const PROJECT_NAME = 'cdk-fargate-express';
 const PROJECT_DESCRIPTION = 'A sample JSII construct lib for Express Apps in AWS Fargate';
 
@@ -13,15 +14,25 @@ const project = new JsiiProject({
   description: PROJECT_DESCRIPTION,
   repository: 'https://github.com/pahud/cdk-fargate-express.git',
   authorName: 'Pahud Hsieh',
-  authorEmail: 'hunhsieh@amazon.com',
+  authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
   devDependencies: {
-    '@aws-cdk/assert': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/assert': Semver.caret(AWS_CDK_LATEST_RELEASE),
     '@types/jest': Semver.caret('25.2.3'),
     '@types/node': Semver.caret('14.0.11'),
+    'ts-jest': Semver.caret('25.3.1'),
+    'jest': Semver.caret('25.5.0'),
+    'dot-prop': Semver.caret('5.1.1'),
   },
   dependencies: {
-    constructs: Semver.pinned('3.0.3'),
+    constructs: Semver.caret(CONSTRUCTS_VERSION),
+    '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+    '@aws-cdk/aws-ecs-patterns': Semver.pinned(AWS_CDK_LATEST_RELEASE),
+  },
+  peerDependencies: {
+    constructs: Semver.caret(CONSTRUCTS_VERSION),
     '@aws-cdk/core': Semver.pinned(AWS_CDK_LATEST_RELEASE),
     '@aws-cdk/aws-ec2': Semver.pinned(AWS_CDK_LATEST_RELEASE),
     '@aws-cdk/aws-ecs': Semver.pinned(AWS_CDK_LATEST_RELEASE),
@@ -41,17 +52,21 @@ project.addFields({
   ]
 });
 
-project.gitignore.exclude(
-  'cdk.context.json',
-  'cdk.out',
-  'package.json'
-);
+project.addFields({
+  'awscdkio': {
+    'twitter': '@pahudnet',
+    'announce': false,
+  }
+});
 
-project.npmignore.exclude(
+const common_exclude = [
   'cdk.out',
   'cdk.context.json',
-  'coverage',
-  'doc'
-);
+  'docker-compose.yml',
+  'images',
+  'yarn-error.log'
+]
+project.npmignore.exclude(...common_exclude);
+project.gitignore.exclude(...common_exclude);
 
 project.synth();

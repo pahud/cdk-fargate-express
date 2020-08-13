@@ -28,13 +28,13 @@ __Extends__: [Construct](#aws-cdk-core-construct)
 
 
 ```ts
-new ExpressService(scope: Construct, id: string, props?: ExpressServiceProps)
+new ExpressService(scope: Construct, id: string, props: ExpressServiceProps)
 ```
 
 * **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
 * **props** (<code>[ExpressServiceProps](#cdk-fargate-express-expressserviceprops)</code>)  *No description*
-  * **expressAssets** (<code>string</code>)  local path to the docker assets directory. __*Default*__: ../express.d
+  * **expressAssets** (<code>string</code>)  local path to the docker assets directory. 
   * **serviceOptions** (<code>[ApplicationLoadBalancedFargateServiceProps](#aws-cdk-aws-ecs-patterns-applicationloadbalancedfargateserviceprops)</code>)  options to customize the servide. __*Optional*__
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  The VPC. __*Optional*__
 
@@ -58,7 +58,7 @@ Name | Type | Description
 
 Name | Type | Description 
 -----|------|-------------
-**expressAssets**?🔹 | <code>string</code> | local path to the docker assets directory.<br/>__*Default*__: ../express.d
+**expressAssets**🔹 | <code>string</code> | local path to the docker assets directory.
 **serviceOptions**?🔹 | <code>[ApplicationLoadBalancedFargateServiceProps](#aws-cdk-aws-ecs-patterns-applicationloadbalancedfargateserviceprops)</code> | options to customize the servide.<br/>__*Optional*__
 **vpc**?🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC.<br/>__*Optional*__
 
