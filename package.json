@@ -32,11 +32,11 @@
   },
   "devDependencies": {
     "constructs": "3.0.4",
-    "@aws-cdk/core": "1.59.0",
-    "@aws-cdk/aws-ec2": "1.59.0",
-    "@aws-cdk/aws-ecs": "1.59.0",
-    "@aws-cdk/aws-ecs-patterns": "1.59.0",
-    "@aws-cdk/assert": "^1.59.0",
+    "@aws-cdk/core": "1.60.0",
+    "@aws-cdk/aws-ec2": "1.60.0",
+    "@aws-cdk/aws-ecs": "1.60.0",
+    "@aws-cdk/aws-ecs-patterns": "1.60.0",
+    "@aws-cdk/assert": "^1.60.0",
     "@types/jest": "^26.0.7",
     "@types/node": "^10.17.0",
     "ts-jest": "^26.1.0",
@@ -59,18 +59,18 @@
     "jsii-docgen": "^1.3.2"
   },
   "peerDependencies": {
-    "constructs": "^3.0.4",
-    "@aws-cdk/core": "1.59.0",
-    "@aws-cdk/aws-ec2": "1.59.0",
-    "@aws-cdk/aws-ecs": "1.59.0",
-    "@aws-cdk/aws-ecs-patterns": "1.59.0"
+    "constructs": "3.0.4",
+    "@aws-cdk/core": "1.60.0",
+    "@aws-cdk/aws-ec2": "1.60.0",
+    "@aws-cdk/aws-ecs": "1.60.0",
+    "@aws-cdk/aws-ecs-patterns": "1.60.0"
   },
   "dependencies": {
-    "constructs": "^3.0.4",
-    "@aws-cdk/core": "1.59.0",
-    "@aws-cdk/aws-ec2": "1.59.0",
-    "@aws-cdk/aws-ecs": "1.59.0",
-    "@aws-cdk/aws-ecs-patterns": "1.59.0"
+    "constructs": "3.0.4",
+    "@aws-cdk/core": "1.60.0",
+    "@aws-cdk/aws-ec2": "1.60.0",
+    "@aws-cdk/aws-ecs": "1.60.0",
+    "@aws-cdk/aws-ecs-patterns": "1.60.0"
   },
   "bundledDependencies": [],
   "keywords": [
