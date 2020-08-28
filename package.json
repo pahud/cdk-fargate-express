@@ -77,61 +77,7 @@
     "node": ">= 10.17.0"
   },
   "license": "Apache-2.0",
-  "start": {
-    "projen": {
-      "descrtiption": "Synthesize project configuration from .projenrc.js",
-      "category": 3
-    },
-    "bump": {
-      "descrtiption": "Commits a bump to the package version based on conventional commits",
-      "category": 2
-    },
-    "release": {
-      "descrtiption": "Bumps version & push to master",
-      "category": 2
-    },
-    "projen:upgrade": {
-      "descrtiption": "upgrades projen to the latest version",
-      "category": 3
-    },
-    "package": {
-      "descrtiption": "Create an npm tarball",
-      "category": 2
-    },
-    "compile": {
-      "descrtiption": "Only compile",
-      "category": 0
-    },
-    "watch": {
-      "descrtiption": "Watch & compile in the background",
-      "category": 0
-    },
-    "build": {
-      "descrtiption": "Full release build",
-      "category": 0
-    },
-    "eslint": {
-      "descrtiption": "Runs eslint against the codebase",
-      "category": 1
-    },
-    "test": {
-      "descrtiption": "Run tests",
-      "category": 1
-    },
-    "test:watch": {
-      "descrtiption": "Run jest in watch mode",
-      "category": 1
-    },
-    "compat": {
-      "descrtiption": "Perform API compatibility check against latest version",
-      "category": 2
-    },
-    "docgen": {
-      "descrtiption": "Generate API.md from .jsii manifest",
-      "category": 2
-    }
-  },
-  "version": "0.4.6",
+  "version": "0.4.14",
   "types": "lib/index.d.ts",
   "jest": {
     "clearMocks": true,

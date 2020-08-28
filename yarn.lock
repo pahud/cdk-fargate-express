@@ -4022,7 +4022,11 @@ jest-worker@^26.3.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+<<<<<<< HEAD
 jest@^26.4.2:
+=======
+jest@^26.0.1:
+>>>>>>> a8eb8324ceab554c6e437662e0e3ae87c439a18a
   version "26.4.2"
   resolved "https://registry.yarnpkg.com/jest/-/jest-26.4.2.tgz#7e8bfb348ec33f5459adeaffc1a25d5752d9d312"
   integrity sha512-LLCjPrUh98Ik8CzW8LLVnSCfLaiY+wbK53U7VxnFSX7Q+kWC4noVeDvGWIFw0Amfq1lq2VfGm7YHWSLBV62MJw==
@@ -4086,7 +4090,11 @@ jsesc@^2.5.1:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
+<<<<<<< HEAD
 jsii-diff@^1.11.0:
+=======
+jsii-diff@^1.5.0:
+>>>>>>> a8eb8324ceab554c6e437662e0e3ae87c439a18a
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.12.0.tgz#033f09d241c20a3e503815ce610eaab4d2f26084"
   integrity sha512-0ny2T36hWzf3aVZqWCBy1pnIs69gpiO24EneEAPs20xLzmyU+MoHJlyM/4E2nsjGVn9+iXks4YmR5gx+Q2CeRg==
@@ -4154,7 +4162,11 @@ jsii-rosetta@^1.12.0:
     xmldom "^0.3.0"
     yargs "^15.4.1"
 
+<<<<<<< HEAD
 jsii@^1.11.0:
+=======
+jsii@^1.5.0:
+>>>>>>> a8eb8324ceab554c6e437662e0e3ae87c439a18a
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/jsii/-/jsii-1.12.0.tgz#bb0558cbaa298e4a0cf82846dace2b4db67259b9"
   integrity sha512-IRTjtmNdsUVpb1uB6wP1GMtOYBhOouXfPLquurU+JvSauLFaTPX2piO4yV8xGKnoZwRwCK+QRKB/DPUkYlDQ9w==
