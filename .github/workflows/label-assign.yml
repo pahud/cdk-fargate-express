@@ -10,5 +10,5 @@ jobs:
       - uses: Naturalclar/issue-action@v2.0.0
         with:
           title-or-body: "title"
-          parameters: '[ {"keywords": ["yarn upgrade", "yarn-upgrade"], "labels": ["yarn-upgrade"], "assignees": ["pahud"]}]'
+          parameters: '[ {"keywords": ["yarn", "yarn-upgrade"], "labels": ["yarn-upgrade"], "assignees": ["pahud"]}]'
           github-token: "${{ secrets.GITHUB_TOKEN }}"
