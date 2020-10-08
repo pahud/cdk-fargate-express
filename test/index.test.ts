@@ -1,7 +1,7 @@
-import { ExpressService } from '../src/index';
-import { App, Stack } from '@aws-cdk/core';
-import '@aws-cdk/assert/jest';
 import * as path from 'path';
+import { App, Stack } from '@aws-cdk/core';
+import { ExpressService } from '../src/index';
+import '@aws-cdk/assert/jest';
 
 test('create the HTTP API', () => {
   const mockApp = new App();
@@ -14,8 +14,7 @@ test('create the HTTP API', () => {
   expect(stack).toHaveResource('AWS::ECS::Service');
   expect(stack).toHaveResource('AWS::ElasticLoadBalancingV2::LoadBalancer', {
     Type: 'application',
-  })
+  });
 });
-
 
 

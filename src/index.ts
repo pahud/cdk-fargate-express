@@ -1,8 +1,8 @@
 
-import * as cdk from '@aws-cdk/core';
 import * as ec2 from '@aws-cdk/aws-ec2';
 import * as ecs from '@aws-cdk/aws-ecs';
 import * as ecsPatterns from '@aws-cdk/aws-ecs-patterns';
+import * as cdk from '@aws-cdk/core';
 
 export interface ExpressServiceProps {
   /**
@@ -12,10 +12,10 @@ export interface ExpressServiceProps {
 
   /**
    * options to customize the servide
-   * 
+   *
    * @defult - None
    */
-  readonly serviceOptions?: ecsPatterns.ApplicationLoadBalancedFargateServiceProps,
+  readonly serviceOptions?: ecsPatterns.ApplicationLoadBalancedFargateServiceProps;
   /**
    * local path to the docker assets directory
    */
@@ -35,6 +35,6 @@ export class ExpressService extends cdk.Construct {
       taskImageOptions: {
         image: ecs.ContainerImage.fromAsset(this.expressAssets),
       },
-    })
+    });
   }
 }
