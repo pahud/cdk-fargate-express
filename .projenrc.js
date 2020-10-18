@@ -82,6 +82,7 @@ workflow.addJobs({
           'branch': 'auto/projen-upgrade',
           'title': 'chore: upgrade projen and yarn',
           'body': 'This PR upgrades projen and yarn upgrade to the latest version',
+          'labels': 'auto-merge',
         }
       },
     ],
