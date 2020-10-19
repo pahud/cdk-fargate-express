@@ -15,7 +15,6 @@ const project = new AwsCdkConstructLibrary({
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
-  antitamper: false,
 
   keywords: [
     'aws',
@@ -51,8 +50,8 @@ const workflow = new GithubWorkflow(project, 'ProjenYarnUpgrade');
 
 workflow.on({
   schedule: [{
-    cron: '0 6 * * *'
-  }], // 6am every day
+    cron: '11 0 * * *'
+  }], // 0:11am every day
   workflow_dispatch: {}, // allow manual triggering
 });
 
@@ -67,8 +66,6 @@ workflow.addJobs({
           'node-version': '10.17.0',
         }
       },
-      // { run: `yarn install` },
-      // { run: `yarn projen` },
       { run: `yarn upgrade` },
       { run: `yarn projen:upgrade` },
       // submit a PR
