@@ -15,14 +15,13 @@ const project = new AwsCdkConstructLibrary({
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
-
+  dependabot: false,
   keywords: [
     'aws',
     'cdk',
     'fargate',
     'express'
   ],
-
   catalog: {
     twitter: 'pahudnet',
     announce: false,
@@ -42,7 +41,7 @@ const project = new AwsCdkConstructLibrary({
   python: {
     distName: 'cdk-fargate-express',
     module: 'cd_fargate_express'
-  }
+  },
 });
 
 // create a custom projen and yarn upgrade workflow
