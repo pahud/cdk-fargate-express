@@ -1,9 +1,6 @@
-const {
-  AwsCdkConstructLibrary,
-  GithubWorkflow,
-} = require('projen');
+const { AwsCdkConstructLibrary } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.62.0';
+const AWS_CDK_LATEST_RELEASE = '1.79.0';
 const PROJECT_NAME = 'cdk-fargate-express';
 const PROJECT_DESCRIPTION = 'A sample JSII construct lib for Express Apps in AWS Fargate';
 const AUTOMATION_TOKEN = 'AUTOMATION_GITHUB_TOKEN';
@@ -20,7 +17,7 @@ const project = new AwsCdkConstructLibrary({
     'aws',
     'cdk',
     'fargate',
-    'express'
+    'express',
   ],
   catalog: {
     twitter: 'pahudnet',
@@ -40,16 +37,16 @@ const project = new AwsCdkConstructLibrary({
 
   python: {
     distName: 'cdk-fargate-express',
-    module: 'cd_fargate_express'
+    module: 'cd_fargate_express',
   },
 });
 
 // create a custom projen and yarn upgrade workflow
-const workflow = new GithubWorkflow(project, 'ProjenYarnUpgrade');
+workflow = project.github.addWorkflow('ProjenYarnUpgrade');
 
 workflow.on({
   schedule: [{
-    cron: '11 0 * * *'
+    cron: '11 0 * * *',
   }], // 0:11am every day
   workflow_dispatch: {}, // allow manual triggering
 });
@@ -59,14 +56,14 @@ workflow.addJobs({
     'runs-on': 'ubuntu-latest',
     'steps': [
       { uses: 'actions/checkout@v2' },
-      { 
+      {
         uses: 'actions/setup-node@v1',
         with: {
           'node-version': '10.17.0',
-        }
+        },
       },
-      { run: `yarn upgrade` },
-      { run: `yarn projen:upgrade` },
+      { run: 'yarn upgrade' },
+      { run: 'yarn projen:upgrade' },
       // submit a PR
       {
         name: 'Create Pull Request',
@@ -78,26 +75,12 @@ workflow.addJobs({
           'title': 'chore: upgrade projen and yarn',
           'body': 'This PR upgrades projen and yarn upgrade to the latest version',
           'labels': 'auto-merge',
-        }
+        },
       },
     ],
   },
 });
 
-project.mergify.addRule({
-  name: 'Merge pull requests for projen upgrade if CI passes',
-  conditions: [
-    'author=cdk-automation',
-    'status-success=build',
-    'title=chore: upgrade projen',
-  ],
-  actions: {
-    merge: {
-      method: 'merge',
-      commit_message: 'title+body',
-    },
-  },
-});
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'images', 'yarn-error.log'];
 project.npmignore.exclude(...common_exclude);
