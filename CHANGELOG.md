@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.120](https://github.com/pahud/cdk-fargate-express/compare/v0.4.119...v0.4.120) (2021-01-02)
+
 ### [0.4.119](https://github.com/pahud/cdk-fargate-express/compare/v0.4.118...v0.4.119) (2021-01-01)
 
 ### [0.4.118](https://github.com/pahud/cdk-fargate-express/compare/v0.4.117...v0.4.118) (2020-12-31)
