@@ -23,6 +23,7 @@ const project = new AwsCdkConstructLibrary({
     twitter: 'pahudnet',
     announce: false,
   },
+  defaultReleaseBranch: ['master'],
 
   // creates PRs for projen upgrades
   // projenUpgradeSecret: 'AUTOMATION_GITHUB_TOKEN',
