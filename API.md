@@ -15,7 +15,7 @@ Name|Description
 
 
 
-## class ExpressService 🔹 <a id="cdk-fargate-express-expressservice"></a>
+## class ExpressService  <a id="cdk-fargate-express-expressservice"></a>
 
 
 
@@ -45,11 +45,11 @@ new ExpressService(scope: Construct, id: string, props: ExpressServiceProps)
 
 Name | Type | Description 
 -----|------|-------------
-**expressAssets**🔹 | <code>string</code> | <span></span>
+**expressAssets** | <code>string</code> | <span></span>
 
 
 
-## struct ExpressServiceProps 🔹 <a id="cdk-fargate-express-expressserviceprops"></a>
+## struct ExpressServiceProps  <a id="cdk-fargate-express-expressserviceprops"></a>
 
 
 
@@ -58,9 +58,9 @@ Name | Type | Description
 
 Name | Type | Description 
 -----|------|-------------
-**expressAssets**🔹 | <code>string</code> | local path to the docker assets directory.
-**serviceOptions**?🔹 | <code>[ApplicationLoadBalancedFargateServiceProps](#aws-cdk-aws-ecs-patterns-applicationloadbalancedfargateserviceprops)</code> | options to customize the servide.<br/>__*Optional*__
-**vpc**?🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC.<br/>__*Optional*__
+**expressAssets** | <code>string</code> | local path to the docker assets directory.
+**serviceOptions**? | <code>[ApplicationLoadBalancedFargateServiceProps](#aws-cdk-aws-ecs-patterns-applicationloadbalancedfargateserviceprops)</code> | options to customize the servide.<br/>__*Optional*__
+**vpc**? | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | The VPC.<br/>__*Optional*__
 
 
 
